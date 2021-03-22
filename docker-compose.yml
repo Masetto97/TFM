@@ -1,0 +1,45 @@
+version: '3.7'
+
+networks:
+  external: 
+    name: network
+
+services: 
+
+  ia:
+    image: docker_ia
+    ports: 
+      - "5000:5000"
+    tty: true
+    stdin_open: true
+    container_name: ia
+    networks:
+      - external
+
+  web:
+    image: docker_web
+    ports: 
+      - "6000:6000"
+    tty: true
+    stdin_open: true
+    container_name: web
+    networks:
+      - external
+    depends_on:
+      - ia
+
+  mariadb:
+    image: mariadb:latest
+    environment:
+      TZ: Europe/Madrid
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: TFM
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    container_name: mariadb
+    ports:
+      - "3306:3306"
+    volumes:
+    - ./BBDD/TFM.sql:/docker-entrypoint-initdb.d/TFM.sql
+    networks: 
+      - external
