@@ -9,7 +9,7 @@ services:
   ia:
     image: docker_ia
     ports: 
-      - "5000:5000"
+      - "10000:10000"
     tty: true
     stdin_open: true
     container_name: ia
@@ -19,7 +19,7 @@ services:
   web:
     image: docker_web
     ports: 
-      - "6000:6000"
+      - "5000:5000"
     tty: true
     stdin_open: true
     container_name: web
@@ -27,6 +27,7 @@ services:
       - external
     depends_on:
       - ia
+      - mariadb
 
   mariadb:
     image: mariadb:latest
