@@ -25,6 +25,11 @@ elif [ $1 == "start" ]
 elif [ $1 == "remove" ]
     then
         docker-compose rm &&
-        docker rmi $container_IA_name &&
-        docker rmi $container_WEB_name 
+        docker rmi $docker_image_IA_name &&
+        docker rmi $docker_image_WEB_name
+
+elif [ $1 == "remove all" ]
+    then
+        docker system prune -a 
+        
 fi
