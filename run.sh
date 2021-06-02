@@ -31,5 +31,4 @@ elif [ $1 == "remove" ]
 elif [ $1 == "remove all" ]
     then
         docker system prune -a 
-        
 fi
