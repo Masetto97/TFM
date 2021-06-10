@@ -7,7 +7,7 @@ RUN apt --fix-broken install
 RUN apt-get install -y python3
 RUN apt install -y python3-pip
 RUN pip3 install mariadb
-RUN pip3 install flask
+RUN pip3 install flask==1.1.4
 
 WORKDIR /app
 RUN git clone https://github.com/Masetto97/APRENDIZAJE_DE_MELODIAS.git
